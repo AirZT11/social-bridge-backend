@@ -35,28 +35,28 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }))
 app.use(cors())
 // Sets the directory for where we keep our assets
 // In a real world scenario, you would want to use a CDN, cloud storage, etc...
-app.use("/assets", express.static(path.join(__dirname, "public/assets")))
+// app.use("/assets", express.static(path.join(__dirname, "public/assets")))
 
 /* FILE STORAGE
  * Enables saving files to the server
  */
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "public/assets")
-  },
-  filename: (req, file, cb) => {
-    cb(null, file.originalname)
-  },
-})
-const upload = multer({ storage })
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, "public/assets")
+//   },
+//   filename: (req, file, cb) => {
+//     cb(null, file.originalname)
+//   },
+// })
+// const upload = multer({ storage })
 
 /* ROUTES WITH FILES
  * 1. Route to register => /auth/register
  * 2. Middleware => upload.single("picture")
  * 3. Controller => Logic for registering => register
  */
-app.post("/auth/register", upload.single("picture"), register)
-app.post("/posts", verifyToken, upload.single("picture"), createPost)
+// app.post("/auth/register", upload.single("picture"), register)
+// app.post("/posts", verifyToken, upload.single("picture"), createPost)
 
 /* ROUTES */
 app.use("/auth", authRoutes)
